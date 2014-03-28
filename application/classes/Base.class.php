@@ -25,8 +25,6 @@
  */
 class Base {
     
-    private $stylesheets = array();
-    
     public function getDbo(){
         static $dbobject = null;
         if (null === $dbobject) {
