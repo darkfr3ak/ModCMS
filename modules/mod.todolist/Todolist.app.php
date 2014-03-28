@@ -35,7 +35,7 @@ class TodolistApp extends ApplicationBase {
     public function addtodotask(){
         $title = $_REQUEST['title'];
 	$desc = $_REQUEST['desc'];
-	$sql = "INSERT INTO ".Conf::$DB_PREFIX."todolist_tasks VALUES(NULL,'$title','$desc')";
+	$sql = "INSERT INTO `".Conf::$DB_PREFIX."todolist_tasks` VALUES(NULL,'$title','$desc')";
 	$db = $this->getDbo();				
 	if($db->query($sql)){				
             $this->redirect('?app=todolist&task=viewtodolist');				
@@ -46,7 +46,7 @@ class TodolistApp extends ApplicationBase {
     
     public function viewtodolist(){
         $db = $this->getDbo();
-        $sql = "SELECT * FROM ".Conf::$DB_PREFIX."todolist_tasks";
+        $sql = "SELECT * FROM `".Conf::$DB_PREFIX."todolist_tasks`";
         $rows = $db->loadResult($sql);    
         
         $this->displayDashboard();
@@ -80,7 +80,7 @@ class TodolistApp extends ApplicationBase {
     public function deletetask(){
 	$id = $_REQUEST['taskid'];
 	$db = $this->getDbo();
-	$sql = "DELETE FROM ".Conf::$DB_PREFIX."todolist_tasks WHERE id=$id";
+	$sql = "DELETE FROM `".Conf::$DB_PREFIX."todolist_tasks` WHERE id=$id";
 	$db->query($sql);
 	$this->redirect('index.php?app=todolist&task=viewtodolist');	
     }
@@ -127,7 +127,7 @@ class TodolistApp extends ApplicationBase {
     
     public function edittaskform(){
 	$id = $_REQUEST['taskid'];
-	$sql = "SELECT * FROM ".Conf::$DB_PREFIX."todolist_tasks WHERE id=$id";
+	$sql = "SELECT * FROM `".Conf::$DB_PREFIX."todolist_tasks` WHERE id=$id";
 	$db = $this->getDbo();
 	$row = $db->loadSingleResult($sql);
         
@@ -161,7 +161,7 @@ class TodolistApp extends ApplicationBase {
 	$id = $_REQUEST['id'];
 	$title = $_REQUEST['title'];
 	$desc = $_REQUEST['desc'];
-	$sql = "UPDATE ".Conf::$DB_PREFIX."todolist_tasks as tasks SET tasks.title='$title',tasks.desc='$desc' WHERE id=$id";
+	$sql = "UPDATE `".Conf::$DB_PREFIX."todolist_tasks` as tasks SET tasks.title='$title',tasks.desc='$desc' WHERE id=$id";
 	$db = $this->getDbo();				
 	if($db->query($sql)){					
             $this->redirect('index.php?app=todolist&task=viewtodolist');				
