@@ -47,7 +47,7 @@ class User extends Base{
     }
     
     private function getData() {
-        $sql = sprintf("SELECT user_name, user_email FROM ".Conf::$DB_PREFIX."core_users WHERE user_id = '%s'", $this->user_id);
+        $sql = sprintf("SELECT user_name, user_email FROM `".Conf::$DB_PREFIX."core_users` WHERE user_id = '%s'", $this->user_id);
 	$db = $this->getDbo();				
 	$rows = $db->loadSingleResult($sql);
         $this->user_name = $rows->user_name;
@@ -55,7 +55,7 @@ class User extends Base{
     }
     
     public function getAllUsers() {
-        $sql = "SELECT user_id, user_name FROM ".Conf::$DB_PREFIX."core_users";
+        $sql = "SELECT user_id, user_name FROM `".Conf::$DB_PREFIX."core_users`";
         $db = $this->getDbo();				
         $users = $db->loadResult($sql);
         return $users;
