@@ -1,0 +1,6 @@
+tmp/
+nbproject/
+modules/mod.download/**
+modules/mod.eventcalendar/**
+modules/mod.forum/**
+modules/mod.userpoints/**

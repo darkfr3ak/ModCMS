@@ -1,0 +1,382 @@
+@import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+
+body{
+    margin-bottom:100px; 
+}
+
+.panel-body .btn:not(.btn-block) { 
+    width:120px;
+    margin-bottom:10px; 
+}
+
+.row{
+    margin-left:0px;
+    margin-right:0px;
+}
+
+#wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+    height: 100%
+}
+
+#sidebar-wrapper {
+    margin-left: -200px;
+    left: 70px;
+    width: 200px;
+    background: #222;
+    position: fixed;
+    height: 100%;
+    z-index: 10000;
+    transition: all .4s ease 0s;
+}
+
+.sidebar-nav {
+    display: block;
+    float: left;
+    width: 200px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#page-content-wrapper {
+    padding-left: 0;
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+}
+#wrapper.active {
+    padding-left: 170px;
+}
+#wrapper.active #sidebar-wrapper {
+    left: 200px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+#sidebar_menu li a, .sidebar-nav li a {
+    color: #999;
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 200px;
+    background: #252525;
+    border-top: 1px solid #373737;
+    border-bottom: 1px solid #1A1A1A;
+    -webkit-transition: background .5s;
+    -moz-transition: background .5s;
+    -o-transition: background .5s;
+    -ms-transition: background .5s;
+    transition: background .5s;
+}
+.sidebar_name {
+    padding-top: 25px;
+    color: #fff;
+    opacity: .7;
+}
+
+.sidebar-nav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+
+.sidebar-nav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+#main_icon
+{
+    float:right;
+   padding-right: 65px;
+   padding-top:20px;
+}
+.sub_icon
+{
+    float:right;
+   padding-right: 65px;
+   padding-top:10px;
+}
+.content-header {
+  height: 65px;
+  line-height: 65px;
+}
+
+.content-header h1 {
+  margin: 0;
+  margin-left: 20px;
+  line-height: 65px;
+  display: inline-block;
+}
+
+@media (max-width:767px) {
+    #wrapper {
+    padding-left: 70px;
+    transition: all .4s ease 0s;
+    }
+    #sidebar-wrapper {
+        left: 70px;
+    }
+    #wrapper.active {
+        padding-left: 150px;
+    }
+    #wrapper.active #sidebar-wrapper {
+        left: 200px;
+        width: 200px;
+        transition: all .4s ease 0s;
+    }
+
+}
+
+/*Panel tabs*/
+            .panel-tabs {
+                position: relative;
+                bottom: 30px;
+                clear:both;
+                border-bottom: 1px solid transparent;
+            }
+
+            .panel-tabs > li {
+                float: left;
+                margin-bottom: -1px;
+            }
+
+            .panel-tabs > li > a {
+                margin-right: 2px;
+                margin-top: 4px;
+                line-height: .85;
+                border: 1px solid transparent;
+                border-radius: 4px 4px 0 0;
+                color: #ffffff;
+            }
+
+            .panel-tabs > li > a:hover {
+                border-color: transparent;
+                color: #ffffff;
+                background-color: transparent;
+            }
+
+            .panel-tabs > li.active > a,
+            .panel-tabs > li.active > a:hover,
+            .panel-tabs > li.active > a:focus {
+                color: #fff;
+                cursor: default;
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                border-radius: 2px;
+                background-color: rgba(255,255,255, .23);
+                border-bottom-color: transparent;
+            }
+            
+.ds-btn li{ list-style:none; float:left; padding:10px; }
+.ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
+.ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
+.draggable-list {
+    list-style: none;
+    margin: 0;
+    min-height: 70px;
+}
+.draggable-item {
+    background-color: #FFF;
+    border: 1px solid #000;
+    cursor: move;
+    display: block;
+    font-weight: bold;
+    color:#CC0033;
+    padding-bottom:  25px;
+    margin: 5px;
+}
+
+#footer{
+    height:30px;
+    vertical-align:middle;
+    text-align:right;
+    clear:both;
+    padding-right:3px;
+    background-color:#317082;
+    margin-top:2px;
+    width:790px;
+}
+    
+#footer form{
+    margin:0px;
+    margin-top:2px;
+}
+
+#dragDropContainer{    /* Main container for this script */
+    width:790px;
+    height:520px;
+    background-color:#FFF;
+    -moz-user-select:none;
+}
+
+#dragDropContainer ul{    /* General rules for all <ul> */
+    margin-top:0px;
+    margin-left:0px;
+    margin-bottom:0px;
+    padding:2px;
+}
+
+#dragDropContainer li,#dragContent li,li#indicateDestination{    /* Movable items, i.e. <LI> */
+    list-style-type:none;
+    height:20px;
+    background-color:#EEE;
+    border:1px solid #000;
+    padding:2px;
+    margin-bottom:2px;
+    cursor:pointer;
+    font-size:0.9em;
+}
+
+            li#indicateDestination{    /* Box indicating where content will be dropped - i.e. the one you use if you don't use arrow */
+                border:1px solid #317082;
+                background-color:#FFF;
+            }
+
+            /* LEFT COLUMN CSS */
+            div#listOfItems{    /* Left column "Available students" */
+
+                float:left;
+                padding-left:10px;
+                padding-right:10px;
+
+                /* CSS HACK */
+                width: 180px;    /* IE 5.x */
+                width/* */:/**/160px;    /* Other browsers */
+                width: /**/160px;
+
+            }
+            #listOfItems ul{    /* Left(Sources) column <ul> */
+                height:350px;
+
+            }
+
+            div#listOfItems div{
+            }
+            div#listOfItems div ul{    /* Left column <ul> */
+                margin-left:10px;    /* Space at the left of list - the arrow will be positioned there */
+            }
+            #listOfItems div p{    /* Heading above left column */
+                margin:0px;
+                font-weight:bold;
+                padding-left:12px;
+                background-color:#317082;
+                color:#FFF;
+                margin-bottom:5px;
+            }
+            /* END LEFT COLUMN CSS */
+
+            #dragDropContainer .mouseover{    /* Mouse over effect DIV box in right column */
+                background-color:#E2EBED;
+                border:1px solid #317082;
+            }
+
+            /* Start main container CSS */
+
+            div#mainContainer{    /* Right column DIV */
+                width:590px;
+                float:left;
+            }
+            #mainContainer div{    /* Parent <div> of small boxes */
+                float:left;
+                margin-right:10px;
+                margin-bottom:10px;
+                margin-top:0px;
+                border:1px solid #999;
+
+                /* CSS HACK */
+                width: 172px;    /* IE 5.x */
+                width/* */:/**/170px;    /* Other browsers */
+                width: /**/170px;
+
+            }
+            #mainContainer div ul{
+                margin-left:10px;
+            }
+
+            #mainContainer div p{    /* Heading above small boxes */
+                margin:0px;
+                padding:0px;
+                padding-left:12px;
+                font-weight:bold;
+                background-color:#317082;
+                color:#FFF;
+                margin-bottom:5px;
+            }
+
+            #mainContainer ul{    /* Small box in right column ,i.e <ul> */
+                width:152px;
+                height:80px;
+                border:0px;
+                margin-bottom:0px;
+                overflow:hidden;
+
+            }
+
+            #dragContent{    /* Drag container */
+                position:absolute;
+                width:150px;
+                height:20px;
+                display:none;
+                margin:0px;
+                padding:0px;
+                z-index:2000;
+            }
+
+            #dragDropIndicator{    /* DIV for the small arrow */
+                position:absolute;
+                width:7px;
+                height:10px;
+                display:none;
+                z-index:1000;
+                margin:0px;
+                padding:0px;
+            }
+.btn-hover {
+  font-weight: normal;
+  color: #333333;
+  cursor: pointer;
+  background-color: inherit;
+  border-color: transparent;
+}
+
+.btn-hover-alt {
+  font-weight: normal;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: inherit;
+  border-color: transparent;
+}
+
+.navbar-xs { min-height:22px; border-radius:0} 
+.navbar-xs .navbar-brand{ padding: 2px 8px;font-size: 14px;line-height: 14px; } 
+.navbar-xs .navbar-nav > li > a { border-right:1px solid #ddd; padding-top: 2px; padding-bottom: 2px; line-height: 16px }
