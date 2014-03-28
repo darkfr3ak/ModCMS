@@ -165,7 +165,7 @@ if (realpath(__FILE__) == realpath($_SERVER['DOCUMENT_ROOT'].$_SERVER['SCRIPT_NA
                                             echo "<td>".$sxml->app->app_data->app_linkText."</td>";
                                             echo "<td>".$sxml->app->title."</td>";
                                             echo "<td>".$sxml->app->app_data->app_author."</td>";
-                                            echo "<td><a href='?app=admin&task=install&name=".$value["dir"]."'>Installieren</a> | <a href='?app=admin&task=delete&name=".$value["dir"]."'>Löschen</a></td>";
+                                            echo "<td><a href='?app=admin&task=install&name=".$value["name"]."'>Installieren</a> | <a href='?app=admin&task=delete&name=".$value["name"]."'>Löschen</a></td>";
                                             echo "</tr>";
                                         }
                                     }
