@@ -280,7 +280,7 @@ class Base {
             foreach($widgets as $widgetObject){
                 $widgetName = $widgetObject->name;
                 $widgetParameters = $widgetObject->parameters;
-                $file = 'modules/com.'.$widgetName.'/'.$widgetName.'.widget.php';
+                $file = 'modules/com.'.$widgetName.'/'.ucfirst($widgetName).'.widget.php';
                 if(file_exists($file)){
                     require_once($file);
                     $widgetclass = ucfirst($widgetName);
