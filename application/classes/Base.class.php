@@ -167,8 +167,9 @@ class Base {
     public function getLocalApps($directory = "modules") {
         if ($handle = opendir($directory)) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry != "." && $entry != "..") {
+                if ($entry != "." && $entry != ".." && substr($entry, 0, 3) != "com") {
                     $files[$entry]["dir"] = $entry;
+                    $files[$entry]["name"] = substr($entry, 4);
                     if($this->isAppInstalled($entry)){
                         $files[$entry]["installed"] = "true";
                     }else{
@@ -214,7 +215,7 @@ class Base {
     private function isAppInstalled($app_name = "") {
         $installedApps = $this->getAllApps();
         for ($index = 0; $index < count($installedApps); $index++) {
-            if($app_name == $installedApps[$index]->app_name){
+            if(substr($app_name, 4) == $installedApps[$index]->app_name){
                 return true;
             }
         }
