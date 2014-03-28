@@ -134,7 +134,7 @@ class AdminApp extends ApplicationBase {
         if(isset(HTTP::$GET['name'])){
             $app = $this->sanitize(HTTP::$GET['name']);
             $app_data = array();
-            if($this->recursive_file_exists($app.".app.xml", SITE_ROOT."apps/".$app)){
+            if($this->recursive_file_exists($app.".app.xml", SITE_ROOT."modules/mod.".$app)){
                 $str = SITE_ROOT."modules/mod.".$app."/".$app.".app.xml";
                 $sxml = simplexml_load_file($str);
                 $app_data = json_decode(json_encode($sxml));
