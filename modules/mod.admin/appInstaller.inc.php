@@ -153,11 +153,11 @@ if (realpath(__FILE__) == realpath($_SERVER['DOCUMENT_ROOT'].$_SERVER['SCRIPT_NA
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $notInstalled = $this->getLocalApps("apps");
+                                    $notInstalled = $this->getLocalApps("modules");
 
                                     foreach ($notInstalled as $key => $value) {
                                         if($value["installed"] == "false"){
-                                            $str="modules/mod.".$value["dir"]."/".$value["dir"].".app.xml";
+                                            $str="modules/".$value["dir"]."/".$value["name"].".app.xml";
                                             $sxml = simplexml_load_file($str);
                                             
                                             echo "<tr>";
