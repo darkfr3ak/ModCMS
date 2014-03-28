@@ -99,7 +99,7 @@ class Login extends ApplicationBase{
                 // escape the POST stuff
                 $this->user_name = $this->sanitize(HTTP::$POST['user_name']);
                 // database query, getting all the info of the selected user
-                $checklogin = $this->db_connection->loadSingleResult("SELECT user_id, user_name, user_email, user_password_hash FROM ".Conf::$DB_PREFIX."core_users WHERE user_name = '" . $this->user_name . "';");
+                $checklogin = $this->db_connection->loadSingleResult("SELECT user_id, user_name, user_email, user_password_hash FROM `".Conf::$DB_PREFIX."core_users` WHERE user_name = '" . $this->user_name . "';");
                 
                 // if this user exists
                 if (isset($checklogin->user_email)) {
