@@ -109,7 +109,7 @@ class Base {
     
     public function getSiteSettings() {
         $db = $this->getDbo();
-        $sql = "SELECT * FROM ".Conf::$DB_PREFIX."core_settings";
+        $sql = "SELECT * FROM `".Conf::$DB_PREFIX."core_settings`";
         $rows = $db->loadResult($sql);
         for ($index = 0; $index < count($rows); $index++) {
             $this->siteSettings[$rows[$index]->property] = $rows[$index]->value;
@@ -118,7 +118,7 @@ class Base {
     }
     
     public function installApp($app_data = array()) {
-        $sql = "INSERT INTO ".Conf::$DB_PREFIX."core_apps VALUES
+        $sql = "INSERT INTO `".Conf::$DB_PREFIX."core_apps` VALUES
                     (NULL,
                     '".$app_data->app->app_data->app_name."',
                     '".$app_data->app->app_data->app_level."',
@@ -136,7 +136,7 @@ class Base {
     }
     
     public function removeApp($app_data = array()) {
-        $sql = "DELETE FROM ".Conf::$DB_PREFIX."core_apps WHERE app_name = '".$app_data->app->app_data->app_name."'";
+        $sql = "DELETE FROM `".Conf::$DB_PREFIX."core_apps` WHERE app_name = '".$app_data->app->app_data->app_name."'";
         $db = $this->getDbo();				
         if($db->query($sql)){
             $tables = $app_data->app->install_data->tables;
@@ -246,13 +246,13 @@ class Base {
     
     public function getActiveWidgets() {
         $db = $this->getDbo();
-        $sql = "SELECT ".Conf::$DB_PREFIX."widgets_active.active_position, ".Conf::$DB_PREFIX."widgets_all.widget_name FROM ".Conf::$DB_PREFIX."widgets_active, ".Conf::$DB_PREFIX."widgets_all WHERE ".Conf::$DB_PREFIX."widgets_active.active_widget = ".Conf::$DB_PREFIX."widgets_all.widget_id;";
+        $sql = "SELECT `".Conf::$DB_PREFIX."widgets_active`.active_position, ".Conf::$DB_PREFIX."widgets_all.widget_name FROM ".Conf::$DB_PREFIX."widgets_active, ".Conf::$DB_PREFIX."widgets_all WHERE ".Conf::$DB_PREFIX."widgets_active.active_widget = ".Conf::$DB_PREFIX."widgets_all.widget_id;";
         $rows = $db->loadResult($sql); 
         return $rows;
     }
     
     public function setActiveWidget($param) {
-        $sql = "INSERT INTO ".Conf::$DB_PREFIX."widgets_active VALUES('$title','$desc')";
+        $sql = "INSERT INTO `".Conf::$DB_PREFIX."widgets_active` VALUES('$title','$desc')";
 	$db = $this->getDbo();				
 	if($db->query($sql)){
             return true;
@@ -262,14 +262,14 @@ class Base {
     
     public function getWigdets() {
         $db = $this->getDbo();
-        $sql = "SELECT * FROM ".Conf::$DB_PREFIX."widgets_all";
+        $sql = "SELECT * FROM `".Conf::$DB_PREFIX."widgets_all`";
         $rows = $db->loadResult($sql);
         return $rows; 
     }
     
     public function getWigdetPositions() {
         $db = $this->getDbo();
-        $sql = "SELECT * FROM ".Conf::$DB_PREFIX."widgets_positions";
+        $sql = "SELECT * `FROM ".Conf::$DB_PREFIX."widgets_positions`";
         $rows = $db->loadResult($sql);
         return $rows; 
     }
