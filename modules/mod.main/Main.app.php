@@ -25,17 +25,17 @@
  * @author darkfr3ak <info at darkfr3ak.de>
  */
 class MainApp extends ApplicationBase {
+    private $article = NULL;
     //put your code here
     public function __construct() {
-
+        $this->article = new Article(1);
     }
     
     function display(){
-        echo '<div class="jumbotron">
-          <h1>Hello, world!</h1>
-          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        echo'<div class="jumbotron">
+          <h1>'.$this->article->articleData->article_title.'</h1>
+          <p>'.$this->article->articleData->article_summary.'</p>
           <p><a class="btn btn-primary btn-lg">Learn more</a></p>
       </div>';
     }
-
 }
