@@ -25,30 +25,32 @@
  */
 class Article extends Base{
     
-    public $article_id;
-    public $article_title;
-    public $article_summary;
-    public $article_content;
-    public $article_author;
-    public $article_date;
-    public $article_editDate;
+    private $_db = null;
+    public $articleData = array();
     
-    public function __construct($article_id) {
-        $this->getById($article_id);
+    public function __construct($articleID = null) {
+        $this->_db = $this->getDbo();
+        
+        $this->articleData = $this->getArticle($articleID);
     }
     
-    private function getById($article_id) {
-        $query = "SELECT * FROM core_articles WHERE article_id = '%d'";
-        $sql = sprintf($query, $article_id);
-        $db = $this->getDbo();
-        $row = $db->loadSingleResult($sql);
-        if ($row){
-            if ( isset( $row->article_id ) ) $this->article_id = (int) $row->article_id;
-            if ( isset( $row->article_date ) ) $this->article_date = $this->formatDate($row->article_date, true);
-            if ( isset( $row->article_editDate ) ) $this->article_editDate = $this->formatDate($row->article_editDate);
-            if ( isset( $row->article_title ) ) $this->article_title = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $row->article_title );
-            if ( isset( $row->article_summary ) ) $this->article_summary = preg_replace ( "/[^\.\,\-\_\'\"\@\?\!\:\$ a-zA-Z0-9()]/", "", $row->article_summary );
-            if ( isset( $row->article_content ) ) $this->article_content = $row->article_content;
-        }
+    private function getArticle($articleID = null) {
+        $sql = sprintf("SELECT * FROM ".Conf::$DB_PREFIX."core_articles WHERE article_id = '%d'", $this->sanitize($articleID));
+        $result = $this->_db->loadSingleResult($sql);
+        return $result;
+    }
+    
+    public function getAllArticles() {
+        $sql = "SELECT * FROM ".Conf::$DB_PREFIX."core_articles";
+        $result = $this->_db->loadResult($sql);
+        return $result;
+    }
+    
+    public function addArticle($articleData = array()) {
+        
+    }
+    
+    public function deleteArticle($articleID = null) {
+        
     }
 }
