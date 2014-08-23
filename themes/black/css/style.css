@@ -1,0 +1,28 @@
+.wrapper{width:900px;}
+.header{
+	border:1px solid grey;
+	background-color:black;
+	color:white;	
+	font-weight:bold;
+	font-size:35px;
+	padding:35px 10px;	
+}
+.sidebar{
+	width: 170px;
+	float:left;
+	padding:5px;
+	border:1px solid black;
+	overflow:hidden;
+}
+.content{
+ width: 706px;
+float: right;
+padding: 5px;
+}
+.footer{
+text-align: center;
+background: black;
+color: white;
+padding: 21px 3px;
+}
+.clear{clear:both;}
