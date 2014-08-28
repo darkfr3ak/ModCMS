@@ -25,9 +25,9 @@
  */
 class DatabasePDO {
     
-    private $_dbname     = 'darkfr3aksql1';
-    private $_dbuser     = 'darkfr3aksql1';
-    private $_dbpass     = 'ba4b511f';
+    private $_dbname     = 'database';
+    private $_dbuser     = 'username';
+    private $_dbpass     = 'password';
     private $_dbserver   = 'localhost';
     private $_db;   //this variable stores the connection to db
     
