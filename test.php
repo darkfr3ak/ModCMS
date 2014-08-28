@@ -17,7 +17,7 @@ include 'application/bootstrap.php';
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+/*
 if(isset(HTTP::$GET['app'])){
     
     $str="apps/".HTTP::$GET['app']."/".HTTP::$GET['app'].".app.xml";
@@ -29,6 +29,7 @@ if(isset(HTTP::$GET['app'])){
 }
 
 $base = new Base();
+*/
 /*
 $allApps = $base->getAppsFromDir("apps");
 foreach ($allApps as $value) {
@@ -47,6 +48,7 @@ foreach ($allApps as $value) {
 }
  * 
  */
+/*
 $apps = $base->getLocalApps("apps");
 print_r($apps);
 echo "<hr>";
@@ -54,4 +56,11 @@ foreach ($apps as $key => $value) {
     if($value["installed"] == "false"){
         echo $value["dir"]." => ".$value["installed"]."<br>";
     }
+} */
+
+if (!function_exists("gettext")){
+    echo "gettext is not installed\n";
+}
+else{
+    echo "gettext is supported\n";
 }
