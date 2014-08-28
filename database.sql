@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.2
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Erstellungszeit: 23. Aug 2014 um 15:14
--- Server Version: 5.2.14-MariaDB-mariadb122~squeeze-log
--- PHP-Version: 5.3.28-1~dotdeb.0
+-- Host: 127.0.0.1
+-- Erstellungszeit: 28. Aug 2014 um 19:50
+-- Server Version: 5.6.16
+-- PHP-Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `darkfr3aksql1`
+-- Datenbank: `cms2`
 --
 
 -- --------------------------------------------------------
@@ -26,10 +26,13 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `mycms_acl_permissions`
 --
 
+DROP TABLE IF EXISTS `mycms_acl_permissions`;
 CREATE TABLE IF NOT EXISTS `mycms_acl_permissions` (
-`ID` int(11) unsigned NOT NULL,
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `permKey` varchar(30) NOT NULL,
-  `permName` varchar(30) NOT NULL
+  `permName` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `permKey` (`permKey`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
@@ -49,9 +52,12 @@ INSERT INTO `mycms_acl_permissions` (`ID`, `permKey`, `permName`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_acl_roles`
 --
 
+DROP TABLE IF EXISTS `mycms_acl_roles`;
 CREATE TABLE IF NOT EXISTS `mycms_acl_roles` (
-`ID` int(11) unsigned NOT NULL,
-  `roleName` varchar(20) NOT NULL
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `roleName` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `roleName` (`roleName`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -69,12 +75,15 @@ INSERT INTO `mycms_acl_roles` (`ID`, `roleName`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_acl_role_perms`
 --
 
+DROP TABLE IF EXISTS `mycms_acl_role_perms`;
 CREATE TABLE IF NOT EXISTS `mycms_acl_role_perms` (
-`ID` int(11) unsigned NOT NULL,
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `roleID` int(11) NOT NULL,
   `permID` int(11) NOT NULL,
   `value` tinyint(1) NOT NULL DEFAULT '0',
-  `addDate` datetime NOT NULL
+  `addDate` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `roleID_2` (`roleID`,`permID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
@@ -105,12 +114,15 @@ INSERT INTO `mycms_acl_role_perms` (`ID`, `roleID`, `permID`, `value`, `addDate`
 -- Tabellenstruktur für Tabelle `mycms_acl_user_perms`
 --
 
+DROP TABLE IF EXISTS `mycms_acl_user_perms`;
 CREATE TABLE IF NOT EXISTS `mycms_acl_user_perms` (
-`ID` int(11) unsigned NOT NULL,
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
   `permID` int(11) NOT NULL,
   `value` tinyint(1) NOT NULL DEFAULT '0',
-  `addDate` datetime NOT NULL
+  `addDate` datetime NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `userID` (`userID`,`permID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -119,10 +131,12 @@ CREATE TABLE IF NOT EXISTS `mycms_acl_user_perms` (
 -- Tabellenstruktur für Tabelle `mycms_acl_user_roles`
 --
 
+DROP TABLE IF EXISTS `mycms_acl_user_roles`;
 CREATE TABLE IF NOT EXISTS `mycms_acl_user_roles` (
   `userID` int(11) NOT NULL,
   `roleID` int(11) NOT NULL,
-  `addDate` datetime NOT NULL
+  `addDate` datetime NOT NULL,
+  UNIQUE KEY `userID` (`userID`,`roleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -140,14 +154,17 @@ INSERT INTO `mycms_acl_user_roles` (`userID`, `roleID`, `addDate`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_core_apps`
 --
 
+DROP TABLE IF EXISTS `mycms_core_apps`;
 CREATE TABLE IF NOT EXISTS `mycms_core_apps` (
-`app_id` int(11) NOT NULL,
+  `app_id` int(11) NOT NULL AUTO_INCREMENT,
   `app_name` varchar(250) NOT NULL,
   `app_level` int(11) NOT NULL,
   `app_author` varchar(250) NOT NULL,
   `app_icon` varchar(250) DEFAULT NULL,
   `app_link` varchar(500) NOT NULL,
-  `app_linkText` varchar(500) DEFAULT NULL
+  `app_linkText` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`app_id`),
+  UNIQUE KEY `app_name` (`app_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
@@ -170,12 +187,14 @@ INSERT INTO `mycms_core_apps` (`app_id`, `app_name`, `app_level`, `app_author`, 
 -- Tabellenstruktur für Tabelle `mycms_core_session`
 --
 
+DROP TABLE IF EXISTS `mycms_core_session`;
 CREATE TABLE IF NOT EXISTS `mycms_core_session` (
   `session_id` varchar(255) NOT NULL,
   `session_started` datetime NOT NULL,
   `session_expires` int(10) unsigned NOT NULL DEFAULT '0',
   `session_user_id` bigint(20) DEFAULT NULL,
-  `session_data` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci
+  `session_data` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  UNIQUE KEY `session_id` (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Haelt alle Sessiondaten';
 
 --
@@ -207,6 +226,7 @@ INSERT INTO `mycms_core_session` (`session_id`, `session_started`, `session_expi
 ('c8aace47df75ffbdb1fa590a08c411f7', '2014-03-18 20:27:06', 1395174426, NULL, ''),
 ('c9v47crf0c16mrn9655et0luf6', '2014-03-15 23:52:37', 1394928518, NULL, 'user_name|s:9:"darkfr3ak";user_email|s:17:"info@darkfr3ak.de";user_id|s:1:"1";user_logged_in|i:1;token|s:20:"931B4CD0345722F218B3";'),
 ('d24b8078743cf15678f0488f13f17870', '2014-08-23 11:03:29', 1408788209, NULL, ''),
+('d87qm83l0gh2ivb5nsffqrjh23', '2014-08-28 19:37:02', 1409251783, NULL, 'user_name|s:9:"darkfr3ak";user_email|s:17:"info@darkfr3ak.de";user_id|s:1:"1";user_logged_in|i:1;token|s:20:"AFE9870FD3EAA983C9FB";'),
 ('dda15a3f2ad0889016ee76d575ad8017', '2014-03-18 20:27:23', 1395174443, NULL, ''),
 ('df15fa54f0b1a21e84bddc0eb3e73b49', '2014-03-19 18:51:25', 1395255085, NULL, ''),
 ('e08413f76255fc31c516f0adc3d33eab', '2014-03-19 18:39:29', 1395260165, NULL, ''),
@@ -222,9 +242,11 @@ INSERT INTO `mycms_core_session` (`session_id`, `session_started`, `session_expi
 -- Tabellenstruktur für Tabelle `mycms_core_settings`
 --
 
+DROP TABLE IF EXISTS `mycms_core_settings`;
 CREATE TABLE IF NOT EXISTS `mycms_core_settings` (
   `property` varchar(150) NOT NULL,
-  `value` varchar(250) NOT NULL
+  `value` varchar(250) NOT NULL,
+  PRIMARY KEY (`property`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -242,15 +264,18 @@ INSERT INTO `mycms_core_settings` (`property`, `value`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_core_users`
 --
 
+DROP TABLE IF EXISTS `mycms_core_users`;
 CREATE TABLE IF NOT EXISTS `mycms_core_users` (
-`user_id` bigint(20) NOT NULL COMMENT 'auto incrementing user_id of each user, unique index',
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index',
   `user_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s name',
   `user_password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s password in salted and hashed format',
   `user_email` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'user''s email',
   `user_lastLogin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_banned` int(11) NOT NULL DEFAULT '0',
   `user_banReason` text COLLATE utf8_unicode_ci,
-  `user_bannedUntil` datetime DEFAULT NULL
+  `user_bannedUntil` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data' AUTO_INCREMENT=4 ;
 
 --
@@ -268,11 +293,15 @@ INSERT INTO `mycms_core_users` (`user_id`, `user_name`, `user_password_hash`, `u
 -- Tabellenstruktur für Tabelle `mycms_download_cart`
 --
 
+DROP TABLE IF EXISTS `mycms_download_cart`;
 CREATE TABLE IF NOT EXISTS `mycms_download_cart` (
-`cart_id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
   `cart_fileID` int(11) NOT NULL,
   `cart_userID` int(11) NOT NULL,
-  `cart_date` datetime NOT NULL
+  `cart_date` datetime NOT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `cart_fileID` (`cart_fileID`),
+  KEY `cart_userID` (`cart_userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -281,10 +310,13 @@ CREATE TABLE IF NOT EXISTS `mycms_download_cart` (
 -- Tabellenstruktur für Tabelle `mycms_download_categories`
 --
 
+DROP TABLE IF EXISTS `mycms_download_categories`;
 CREATE TABLE IF NOT EXISTS `mycms_download_categories` (
-`cat_id` int(11) NOT NULL,
+  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(200) NOT NULL,
-  `cat_protected` int(11) NOT NULL DEFAULT '0'
+  `cat_protected` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cat_id`),
+  UNIQUE KEY `cat_name` (`cat_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -301,25 +333,19 @@ INSERT INTO `mycms_download_categories` (`cat_id`, `cat_name`, `cat_protected`) 
 -- Tabellenstruktur für Tabelle `mycms_download_files`
 --
 
+DROP TABLE IF EXISTS `mycms_download_files`;
 CREATE TABLE IF NOT EXISTS `mycms_download_files` (
-`file_id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL AUTO_INCREMENT,
   `file_name` varchar(150) NOT NULL,
   `file_version` varchar(50) NOT NULL,
   `file_dispName` varchar(150) NOT NULL,
   `file_desc` text NOT NULL,
   `file_date` datetime NOT NULL,
   `file_category` varchar(100) NOT NULL DEFAULT 'default',
-  `file_forMembers` int(11) NOT NULL DEFAULT '0'
+  `file_forMembers` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`file_id`),
+  UNIQUE KEY `file_name` (`file_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Daten für Tabelle `mycms_download_files`
---
-
-INSERT INTO `mycms_download_files` (`file_id`, `file_name`, `file_version`, `file_dispName`, `file_desc`, `file_date`, `file_category`, `file_forMembers`) VALUES
-(1, 'bootstrap-3.1.1.zip', '3.1.1', 'Twitter Bootstrap', 'Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat), and maintained by the [core team](https://github.com/twbs?tab=members) with the massive support and involvement of the community.', '2014-03-16 23:11:52', 'Scripts', 0),
-(2, 'PHP_PDO.pdf', '1.0', 'PHP - PDO Tutorial', 'PHP Data Objects \r\nDas ist der vollstÃ¤ndige Name fÃ¼r PDO. Und genau wie MySQL und MySQLi ist es eine \r\nErweiterung fÃ¼r den Zugriff auf Datenbanken. Allerdings gibt es hier ein paar Features, die \r\nneu sind. Hinzu kommen noch ein paar gravierende Unterschiede zu den beiden anderen \r\nErweiterungen.', '2014-03-16 23:15:29', 'Books', 0),
-(3, 'jquery-1.11.0.min.js', '1.11.0', 'jQuery minimized', 'jquery', '2014-03-16 23:15:29', 'Scripts', 0);
 
 -- --------------------------------------------------------
 
@@ -327,12 +353,15 @@ INSERT INTO `mycms_download_files` (`file_id`, `file_name`, `file_version`, `fil
 -- Tabellenstruktur für Tabelle `mycms_download_log`
 --
 
+DROP TABLE IF EXISTS `mycms_download_log`;
 CREATE TABLE IF NOT EXISTS `mycms_download_log` (
-`log_id` int(11) NOT NULL,
+  `log_id` int(11) NOT NULL AUTO_INCREMENT,
   `log_file` int(11) NOT NULL,
   `log_user` varchar(200) NOT NULL DEFAULT 'guest',
   `log_date` datetime NOT NULL,
-  `log_version` varchar(50) NOT NULL
+  `log_version` varchar(50) NOT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `log_file` (`log_file`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -341,12 +370,14 @@ CREATE TABLE IF NOT EXISTS `mycms_download_log` (
 -- Tabellenstruktur für Tabelle `mycms_events_calendar`
 --
 
+DROP TABLE IF EXISTS `mycms_events_calendar`;
 CREATE TABLE IF NOT EXISTS `mycms_events_calendar` (
-`event_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL AUTO_INCREMENT,
   `event_title` varchar(100) NOT NULL,
   `event_desc` text NOT NULL,
   `event_date` date NOT NULL,
-  `event_time` time DEFAULT NULL
+  `event_time` time DEFAULT NULL,
+  PRIMARY KEY (`event_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -362,10 +393,12 @@ INSERT INTO `mycms_events_calendar` (`event_id`, `event_title`, `event_desc`, `e
 -- Tabellenstruktur für Tabelle `mycms_todolist_tasks`
 --
 
+DROP TABLE IF EXISTS `mycms_todolist_tasks`;
 CREATE TABLE IF NOT EXISTS `mycms_todolist_tasks` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(150) NOT NULL,
-  `desc` text NOT NULL
+  `desc` text NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
@@ -385,10 +418,12 @@ INSERT INTO `mycms_todolist_tasks` (`id`, `title`, `desc`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_widgets_active`
 --
 
+DROP TABLE IF EXISTS `mycms_widgets_active`;
 CREATE TABLE IF NOT EXISTS `mycms_widgets_active` (
-`active_id` int(11) NOT NULL,
+  `active_id` int(11) NOT NULL AUTO_INCREMENT,
   `active_widget` varchar(150) NOT NULL,
-  `active_position` varchar(100) NOT NULL
+  `active_position` varchar(100) NOT NULL,
+  PRIMARY KEY (`active_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -397,9 +432,12 @@ CREATE TABLE IF NOT EXISTS `mycms_widgets_active` (
 -- Tabellenstruktur für Tabelle `mycms_widgets_all`
 --
 
+DROP TABLE IF EXISTS `mycms_widgets_all`;
 CREATE TABLE IF NOT EXISTS `mycms_widgets_all` (
-`widget_id` int(11) NOT NULL,
-  `widget_name` varchar(100) NOT NULL
+  `widget_id` int(11) NOT NULL AUTO_INCREMENT,
+  `widget_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`widget_id`),
+  UNIQUE KEY `widget_name` (`widget_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -417,9 +455,12 @@ INSERT INTO `mycms_widgets_all` (`widget_id`, `widget_name`) VALUES
 -- Tabellenstruktur für Tabelle `mycms_widgets_positions`
 --
 
+DROP TABLE IF EXISTS `mycms_widgets_positions`;
 CREATE TABLE IF NOT EXISTS `mycms_widgets_positions` (
-`pos_id` int(11) NOT NULL,
-  `pos_name` varchar(100) NOT NULL
+  `pos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pos_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`pos_id`),
+  UNIQUE KEY `pos_name` (`pos_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -430,197 +471,6 @@ INSERT INTO `mycms_widgets_positions` (`pos_id`, `pos_name`) VALUES
 (2, 'adminDashboard'),
 (1, 'sidebarRight');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `mycms_acl_permissions`
---
-ALTER TABLE `mycms_acl_permissions`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `permKey` (`permKey`);
-
---
--- Indexes for table `mycms_acl_roles`
---
-ALTER TABLE `mycms_acl_roles`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `roleName` (`roleName`);
-
---
--- Indexes for table `mycms_acl_role_perms`
---
-ALTER TABLE `mycms_acl_role_perms`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `roleID_2` (`roleID`,`permID`);
-
---
--- Indexes for table `mycms_acl_user_perms`
---
-ALTER TABLE `mycms_acl_user_perms`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `userID` (`userID`,`permID`);
-
---
--- Indexes for table `mycms_acl_user_roles`
---
-ALTER TABLE `mycms_acl_user_roles`
- ADD UNIQUE KEY `userID` (`userID`,`roleID`);
-
---
--- Indexes for table `mycms_core_apps`
---
-ALTER TABLE `mycms_core_apps`
- ADD PRIMARY KEY (`app_id`), ADD UNIQUE KEY `app_name` (`app_name`);
-
---
--- Indexes for table `mycms_core_session`
---
-ALTER TABLE `mycms_core_session`
- ADD UNIQUE KEY `session_id` (`session_id`);
-
---
--- Indexes for table `mycms_core_settings`
---
-ALTER TABLE `mycms_core_settings`
- ADD PRIMARY KEY (`property`);
-
---
--- Indexes for table `mycms_core_users`
---
-ALTER TABLE `mycms_core_users`
- ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `user_name` (`user_name`);
-
---
--- Indexes for table `mycms_download_cart`
---
-ALTER TABLE `mycms_download_cart`
- ADD PRIMARY KEY (`cart_id`), ADD KEY `cart_fileID` (`cart_fileID`), ADD KEY `cart_userID` (`cart_userID`);
-
---
--- Indexes for table `mycms_download_categories`
---
-ALTER TABLE `mycms_download_categories`
- ADD PRIMARY KEY (`cat_id`), ADD UNIQUE KEY `cat_name` (`cat_name`);
-
---
--- Indexes for table `mycms_download_files`
---
-ALTER TABLE `mycms_download_files`
- ADD PRIMARY KEY (`file_id`), ADD UNIQUE KEY `file_name` (`file_name`);
-
---
--- Indexes for table `mycms_download_log`
---
-ALTER TABLE `mycms_download_log`
- ADD PRIMARY KEY (`log_id`), ADD KEY `log_file` (`log_file`);
-
---
--- Indexes for table `mycms_events_calendar`
---
-ALTER TABLE `mycms_events_calendar`
- ADD PRIMARY KEY (`event_id`);
-
---
--- Indexes for table `mycms_todolist_tasks`
---
-ALTER TABLE `mycms_todolist_tasks`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `mycms_widgets_active`
---
-ALTER TABLE `mycms_widgets_active`
- ADD PRIMARY KEY (`active_id`);
-
---
--- Indexes for table `mycms_widgets_all`
---
-ALTER TABLE `mycms_widgets_all`
- ADD PRIMARY KEY (`widget_id`), ADD UNIQUE KEY `widget_name` (`widget_name`);
-
---
--- Indexes for table `mycms_widgets_positions`
---
-ALTER TABLE `mycms_widgets_positions`
- ADD PRIMARY KEY (`pos_id`), ADD UNIQUE KEY `pos_name` (`pos_name`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `mycms_acl_permissions`
---
-ALTER TABLE `mycms_acl_permissions`
-MODIFY `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `mycms_acl_roles`
---
-ALTER TABLE `mycms_acl_roles`
-MODIFY `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `mycms_acl_role_perms`
---
-ALTER TABLE `mycms_acl_role_perms`
-MODIFY `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=71;
---
--- AUTO_INCREMENT for table `mycms_acl_user_perms`
---
-ALTER TABLE `mycms_acl_user_perms`
-MODIFY `ID` int(11) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `mycms_core_apps`
---
-ALTER TABLE `mycms_core_apps`
-MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `mycms_core_users`
---
-ALTER TABLE `mycms_core_users`
-MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index',AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `mycms_download_cart`
---
-ALTER TABLE `mycms_download_cart`
-MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `mycms_download_categories`
---
-ALTER TABLE `mycms_download_categories`
-MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `mycms_download_files`
---
-ALTER TABLE `mycms_download_files`
-MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `mycms_download_log`
---
-ALTER TABLE `mycms_download_log`
-MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `mycms_events_calendar`
---
-ALTER TABLE `mycms_events_calendar`
-MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `mycms_todolist_tasks`
---
-ALTER TABLE `mycms_todolist_tasks`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `mycms_widgets_active`
---
-ALTER TABLE `mycms_widgets_active`
-MODIFY `active_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `mycms_widgets_all`
---
-ALTER TABLE `mycms_widgets_all`
-MODIFY `widget_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `mycms_widgets_positions`
---
-ALTER TABLE `mycms_widgets_positions`
-MODIFY `pos_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
