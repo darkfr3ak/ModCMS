@@ -25,7 +25,7 @@ header("Content-type:text/html; charset=utf-8");
 
 define("DS", DIRECTORY_SEPARATOR);
 define("DEBUG_MODE", 0);
-define("SITE_ROOT", $_SERVER['DOCUMENT_ROOT'].DS);
+define("SITE_ROOT", dirname(dirname(__FILE__)).DS);
 
 // checking for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
