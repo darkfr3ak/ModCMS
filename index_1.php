@@ -1,5 +1,5 @@
 <?php 
-include 'core/bootstrap.php';
+include 'application/bootstrap.php';
 
 if(isset($_GET['userID'])){
     $userID = $_GET['userID'];

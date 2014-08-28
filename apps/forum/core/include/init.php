@@ -25,8 +25,8 @@ function forumLoader($class_name)
 
     # List all the class directories in the array.
     $array_paths = array(
-        '../core/classes/', 
-        'core/classes/'
+        '../application/classes/', 
+        'application/classes/'
     );
 
     # Count the total item in the array.

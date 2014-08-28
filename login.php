@@ -1,6 +1,6 @@
 <?php
 
-include 'core/bootstrap.php';
+include 'application/bootstrap.php';
 /**
  * A simple, clean and secure PHP Login Script
  *

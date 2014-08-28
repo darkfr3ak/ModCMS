@@ -1,5 +1,5 @@
 <?php
-include 'core/bootstrap.php';
+include 'application/bootstrap.php';
 /* 
  * Copyright (C) 2014 darkfr3ak <info at darkfr3ak.de>
  *

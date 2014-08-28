@@ -22,10 +22,10 @@ function cmsAutoLoad($class_name) {
 
     # List all the class directories in the array.
     $array_paths = array(
-        SITE_ROOT.'core/classes/', 
-        SITE_ROOT.'core/libraries/', 
-        SITE_ROOT.'core/libraries/database/', 
-        SITE_ROOT.'core/libraries/interfaces/', 
+        SITE_ROOT.'application/classes/', 
+        SITE_ROOT.'application/libraries/', 
+        SITE_ROOT.'application/libraries/database/', 
+        SITE_ROOT.'application/libraries/interfaces/', 
     );
 
     # Count the total item in the array.
