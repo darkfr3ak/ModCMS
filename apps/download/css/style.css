@@ -1,0 +1,42 @@
+/*
+Copyright (C) 2014 darkfr3ak <info at darkfr3ak.de>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+*/
+/* 
+    Created on : 16.03.2014, 23:37:33
+    Author     : darkfr3ak <info at darkfr3ak.de>
+*/
+
+
+.container { margin-top: 20px; }
+.mb20 { margin-bottom: 20px; } 
+
+.download-item .thumbnail { border-radius: 0 !important; }
+.download-item:first-child { margin-top: 0 !important; }
+.download-item { margin-top: 20px; }
+.download-item .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
+.download-item ul { padding-left: 0 !important; list-style: none;  }
+.download-item ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
+.download-item ul li i { padding-right: 5px; }
+.download-item .col-md-7 { position: relative; }
+.download-item h3 { font: 500 normal 1.375em "Roboto",Arial,Verdana,sans-serif; margin-top: 0 !important; margin-bottom: 10px !important; }
+.download-item h3 > a, .download-item i { color: #248dc1 !important; }
+.download-item p { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; } 
+.download-item span.plus { position: absolute; right: 0; top: 126px; }
+.download-item span.plus a { background-color: #248dc1; padding: 5px 5px 3px 5px; }
+.download-item span.plus a:hover { background-color: #414141; }
+.download-item span.plus a i { color: #fff !important; }
+.download-item span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }

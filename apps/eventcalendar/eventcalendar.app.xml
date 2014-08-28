@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Application>
+    <app>
+        <title>Simple Eventcalendar</title>
+        <app_data>
+            <app_name>eventcalendar</app_name>
+            <app_author>darkfr3ak</app_author>
+            <app_icon>calendar</app_icon>
+            <app_level>0</app_level>
+            <app_link>?app=eventcalendar</app_link>
+            <app_linkText>Event-Kalender</app_linkText>
+        </app_data>
+        <install_data>
+            <tables>mycms_events_calendar</tables>
+            <sql>
+                DROP TABLE IF EXISTS `mycms_events_calendar`;
+                CREATE TABLE IF NOT EXISTS `mycms_events_calendar` (
+                  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `event_title` varchar(100) NOT NULL,
+                  `event_desc` text NOT NULL,
+                  `event_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `event_repeat` int(11) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`event_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+            </sql>
+        </install_data>
+    </app>
+</Application>

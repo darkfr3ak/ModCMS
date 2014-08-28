@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Application>
+    <app>
+        <title>Core Functionality (User-Management)</title>
+        <app_data>
+            <app_name>user</app_name>
+            <app_author>darkfr3ak</app_author>
+            <app_icon>user</app_icon>
+            <app_level>1</app_level>
+            <app_link>?app=user</app_link>
+            <app_linkText>Profile</app_linkText>
+        </app_data>
+        <install_data>
+            <sql>/**/</sql>
+        </install_data>
+    </app>
+</Application>

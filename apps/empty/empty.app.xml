@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Application>
+    <app>
+        <title>Demo für neue Apps</title>
+        <app_data>
+            <app_name>empty</app_name>
+            <app_author>darkfr3ak</app_author>
+            <app_icon>circle-remove</app_icon>
+            <app_level>0</app_level>
+            <app_link>./</app_link>
+            <app_linkText>VorlagenApp</app_linkText>
+        </app_data>
+        <install_data>
+            <tables></tables>
+            <sql></sql>
+        </install_data>
+    </app>
+</Application>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Application>
+    <app>
+        <title>Download-Center</title>
+        <app_data>
+            <app_name>download</app_name>
+            <app_author>darkfr3ak</app_author>
+            <app_icon>download-alt</app_icon>
+            <app_level>0</app_level>
+            <app_link>?app=download</app_link>
+            <app_linkText>Downloads</app_linkText>
+        </app_data>
+        <install_data>
+            <tables>mycms_download_files|mycms_download_categories|mycms_download_log|mycms_download_cart</tables>
+            <sql>
+                DROP TABLE IF EXISTS `mycms_download_cart`;
+                CREATE TABLE IF NOT EXISTS `mycms_download_cart` (
+                  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cart_fileID` int(11) NOT NULL,
+                  `cart_userID` int(11) NOT NULL,
+                  `cart_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  PRIMARY KEY (`cart_id`),
+                  KEY `cart_fileID` (`cart_fileID`),
+                  KEY `cart_userID` (`cart_userID`)
+                ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+                DROP TABLE IF EXISTS `mycms_download_categories`;
+                CREATE TABLE IF NOT EXISTS `mycms_download_categories` (
+                  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cat_name` varchar(200) NOT NULL,
+                  `cat_protected` int(11) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`cat_id`),
+                  UNIQUE KEY `cat_name` (`cat_name`)
+                ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+                INSERT INTO `mycms_download_categories` (`cat_id`, `cat_name`, `cat_protected`) VALUES
+                (1, 'Scripts', 0),
+                (2, 'Books', 0);
+
+                DROP TABLE IF EXISTS `mycms_download_files`;
+                CREATE TABLE IF NOT EXISTS `mycms_download_files` (
+                  `file_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `file_name` varchar(150) NOT NULL,
+                  `file_version` varchar(50) NOT NULL,
+                  `file_dispName` varchar(150) NOT NULL,
+                  `file_desc` text NOT NULL,
+                  `file_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `file_category` varchar(100) NOT NULL DEFAULT 'default',
+                  `file_forMembers` int(11) NOT NULL DEFAULT '0',
+                  PRIMARY KEY (`file_id`),
+                  UNIQUE KEY `file_name` (`file_name`)
+                ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+                INSERT INTO `mycms_download_files` (`file_id`, `file_name`, `file_version`, `file_dispName`, `file_desc`, `file_date`, `file_category`, `file_forMembers`) VALUES
+                (1, 'bootstrap-3.1.1.zip', '3.1.1', 'Twitter Bootstrap', 'Bootstrap is a sleek, intuitive, and powerful front-end framework for faster and easier web development, created by [Mark Otto](http://twitter.com/mdo) and [Jacob Thornton](http://twitter.com/fat), and maintained by the [core team](https://github.com/twbs?tab=members) with the massive support and involvement of the community.', '2014-03-16 23:11:52', 'Scripts', 0),
+                (2, 'PHP_PDO.pdf', '1.0', 'PHP - PDO Tutorial', 'PHP Data Objects \r\nDas ist der vollständige Name für PDO. Und genau wie MySQL und MySQLi ist es eine \r\nErweiterung für den Zugriff auf Datenbanken. Allerdings gibt es hier ein paar Features, die \r\nneu sind. Hinzu kommen noch ein paar gravierende Unterschiede zu den beiden anderen \r\nErweiterungen.', '2014-03-16 23:15:29', 'Books', 0),
+                (3, 'jquery-1.11.0.min.js', '1.11.0', 'jQuery minimized', 'jquery', '2014-03-16 23:15:29', 'Scripts', 0);
+
+                DROP TABLE IF EXISTS `mycms_download_log`;
+                CREATE TABLE IF NOT EXISTS `mycms_download_log` (
+                  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `log_file` int(11) NOT NULL,
+                  `log_user` varchar(200) NOT NULL DEFAULT 'guest',
+                  `log_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  `log_version` varchar(50) NOT NULL,
+                  PRIMARY KEY (`log_id`),
+                  KEY `log_file` (`log_file`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </sql>
+        </install_data>
+    </app>
+</Application>

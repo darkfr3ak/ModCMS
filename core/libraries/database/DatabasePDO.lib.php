@@ -25,9 +25,9 @@
  */
 class DatabasePDO {
     
-    private $_dbname     = 'database';
-    private $_dbuser     = 'username';
-    private $_dbpass     = 'password';
+    private $_dbname     = 'cms2';
+    private $_dbuser     = 'root';
+    private $_dbpass     = 'root';
     private $_dbserver   = 'localhost';
     private $_db;   //this variable stores the connection to db
     

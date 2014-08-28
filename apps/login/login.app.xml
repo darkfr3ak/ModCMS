@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Application>
+    <app>
+        <title>Core Functionality (Login)</title>
+        <app_data>
+            <app_name>login</app_name>
+            <app_author>darkfr3ak</app_author>
+            <app_icon>sign-in</app_icon>
+            <app_level>0</app_level>
+            <app_link>?app=login</app_link>
+            <app_linkText>Login</app_linkText>
+        </app_data>
+        <install_data>
+            <require>user</require>
+            <sql>/**/</sql>
+        </install_data>
+    </app>
+</Application>
