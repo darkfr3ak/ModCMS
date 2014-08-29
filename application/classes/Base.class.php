@@ -99,9 +99,9 @@ class Base {
     
     public function getCurrentApp() {
         if(isset(HTTP::$GET['app'])){
-            return 'apps/'.$this->sanitize(HTTP::$GET['app']).'/';
+            return 'modules/apps/'.$this->sanitize(HTTP::$GET['app']).'/';
         }else{
-            return 'apps/default/';
+            return 'modules/apps/default/';
         }
     }
     

@@ -109,13 +109,13 @@ class AdminApp extends ApplicationBase {
     
     public function ext() {
         $app = $this->sanitize(HTTP::$GET['man']);
-        include 'apps/'.$app."/admin/admin.php";
+        include 'modules/apps/'.$app."/admin/admin.php";
     }
     
     public function uninstall() {
         if(isset(HTTP::$GET['name'])){
             $app = $this->sanitize(HTTP::$GET['name']);
-            $str = SITE_ROOT."apps/".$app."/".$app.".app.xml";
+            $str = SITE_ROOT."modules/apps/".$app."/".$app.".app.xml";
             $sxml = simplexml_load_file($str);
             $tmp_data = json_decode(json_encode($sxml));
             unset($tmp_data->app->title);
@@ -134,8 +134,8 @@ class AdminApp extends ApplicationBase {
         if(isset(HTTP::$GET['name'])){
             $app = $this->sanitize(HTTP::$GET['name']);
             $app_data = array();
-            if($this->recursive_file_exists($app.".app.xml", SITE_ROOT."apps/".$app)){
-                $str = SITE_ROOT."apps/".$app."/".$app.".app.xml";
+            if($this->recursive_file_exists($app.".app.xml", SITE_ROOT."modules/apps/".$app)){
+                $str = SITE_ROOT."modules/apps/".$app."/".$app.".app.xml";
                 $sxml = simplexml_load_file($str);
                 $app_data = json_decode(json_encode($sxml));
 
@@ -155,7 +155,7 @@ class AdminApp extends ApplicationBase {
     public function delete() {
         if(isset(HTTP::$GET['name'])){
             $app = $this->sanitize(HTTP::$GET['name']);
-            if($this->deleteApp(SITE_ROOT."apps/".$app)){
+            if($this->deleteApp(SITE_ROOT."modules/apps/".$app)){
                 $this->redirect("index.php?app=admin&task=appInstaller");
             }
         }
