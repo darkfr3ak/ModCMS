@@ -58,9 +58,7 @@ foreach ($apps as $key => $value) {
     }
 } */
 
-if (!function_exists("gettext")){
-    echo "gettext is not installed\n";
-}
-else{
-    echo "gettext is supported\n";
-}
+// Include I18N support
+require_once "application/locale.php";
+echo _("Hello World!"), "<br>";
+echo _("Testing Translation...");

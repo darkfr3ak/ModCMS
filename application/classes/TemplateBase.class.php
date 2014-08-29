@@ -50,7 +50,7 @@ class TemplateBase extends Base{
     
     public function appOutput(){
 	$appname = (isset($_REQUEST['app'])) ? $_REQUEST['app'] : 'default';
-        $file = 'apps/'.$appname.'/'.ucfirst($appname).'.app.php';
+        $file = 'modules/apps/'.$appname.'/'.ucfirst($appname).'.app.php';
         if(file_exists($file)){
             require_once($file);
             $application = ucfirst($appname).'App';

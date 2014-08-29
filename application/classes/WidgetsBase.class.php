@@ -31,7 +31,7 @@ class WidgetsBase extends Base{
     
     public function setWidgetPath($widgetName){
         //here will be logic to set path to widget file which is extending CmsWidget class.
-        $this->widgetPath = 'widgets/'.$widgetName.'/';
+        $this->widgetPath = 'modules/widgets/'.$widgetName.'/';
         $this->widgetName = $widgetName;
     }
     
