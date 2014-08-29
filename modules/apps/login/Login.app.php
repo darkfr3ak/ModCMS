@@ -38,7 +38,7 @@ class LoginApp extends ApplicationBase {
             <div class="col-sm-6 col-md-4 col-md-offset-4">
                 <h1 class="text-center login-title">Login</h1>
                 <div class="account-wall">
-                    <img class="profile-img" src="assets/img/photo.png" alt="">
+                    <img class="profile-img" src="'.$this->getCurrentApp().'img/photo.png" alt="">
                     <form class="form-signin" action="login.php" method="post" role="form" name="loginform">
                     <input type="text" id="login_input_username" name="user_name" class="form-control" placeholder="Your Username" required autofocus>
                     <input type="password" name="user_password" id="login_input_password" class="form-control" placeholder="Your Password" required>
